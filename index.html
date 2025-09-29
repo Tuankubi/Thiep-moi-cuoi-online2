@@ -174,27 +174,6 @@ form button:hover{
     </div>
   </div>
 
-  <!-- Form RSVP -->
-  <div class="section">
-    <h2>RSVP - Xác Nhận Tham Dự</h2>
-    <form id="rsvpForm">
-      <label>Tên khách mời:</label>
-      <input type="text" name="name" required placeholder="Nhập tên của bạn">
-      
-      <label>Email:</label>
-      <input type="email" name="email" required placeholder="Nhập email">
-      
-      <label>Bạn có tham dự không?</label>
-      <select name="attend" required>
-        <option value="">Chọn...</option>
-        <option value="yes">Có</option>
-        <option value="no">Không</option>
-      </select>
-      
-      <button type="submit">Gửi</button>
-    </form>
-  </div>
-
 </div>
 
 <!-- Nhạc nền -->
@@ -218,12 +197,7 @@ btn.addEventListener('click',()=>{
   }
 });
 
-// RSVP form
-document.getElementById('rsvpForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  alert('Cảm ơn bạn đã xác nhận!');
-  this.reset();
-});
+
 </script>
 
 </body>
