@@ -119,6 +119,24 @@ header p{margin:4px 0 0;font-size:16px;}
   cursor:pointer;
   box-shadow:0 4px 12px rgba(0,0,0,0.25);
 }
+.gallery img{
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+.gallery img:hover{
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+body{
+  background: linear-gradient(120deg, #fceabb, #f8b500);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
 
 /* RSVP form */
 form{
