@@ -8,6 +8,71 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
+  .flower{
+  position:fixed;
+  top:-50px;
+  font-size:20px;
+  animation: fall linear forwards;
+  pointer-events:none;
+  z-index:9999;
+}
+
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0deg);}
+  100%{transform:translateY(100vh) rotate(360deg);}
+}
+
+  .invitation-wrapper{
+  position:relative;
+  width:400px;
+  margin:50px auto;
+  text-align:center;
+}
+.envelope{
+  position:relative;
+  width:100%;
+  height:300px;
+  perspective:1000px;
+}
+.left-door, .right-door{
+  position:absolute;
+  width:50%;
+  height:100%;
+  top:0;
+  background:#ffb6c1;
+  border:2px solid #fff;
+  transition:transform 1.5s ease-in-out;
+  transform-origin:left;
+  z-index:2;
+}
+.right-door{
+  right:0;
+  transform-origin:right;
+}
+.content{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#fff;
+  border:2px solid #ffb6c1;
+  padding:20px;
+  box-sizing:border-box;
+  opacity:0;
+  transition:opacity 1s ease-in-out;
+  z-index:1;
+}
+.envelope.open .left-door{
+  transform:rotateY(-100deg);
+}
+.envelope.open .right-door{
+  transform:rotateY(100deg);
+}
+.envelope.open .content{
+  opacity:1;
+}
+
   .envelope{position:relative;width:600px;margin:auto;}
 .left-flap, .right-flap{
   position:absolute;
@@ -186,19 +251,22 @@ form button:hover{
   </div>
 
   <!-- Nội dung thiệp -->
-   <div class="envelope">
-  <div class="left-flap"></div>
-  <div class="right-flap"></div>
-  <div class="invite-content">
-    <h2>Lời Mời</h2>
-    <div class="invite-text">
+   <div class="invitation-wrapper">
+  <div class="envelope">
+    <div class="left-door"></div>
+    <div class="right-door"></div>
+    <div class="content">
+      <h1>Thiệp Mời</h1>
       <p>Trân trọng kính mời Quý khách tới dự bữa cơm thân mật chung vui cùng gia đình chúng tôi.</p>
       <p>Địa điểm: <strong>Tư Gia Nhà Trai – Tiên Kiên, Trường Sơn, Bắc Ninh</strong></p>
       <p>Thời gian: <strong>10 giờ 00 — Thứ Ba, ngày 18/02/2025</strong><br>(Tức ngày 21 tháng 01 năm Ất Tỵ)</p>
       <p>Sự hiện diện của Quý vị là niềm vinh hạnh cho gia đình chúng tôi!</p>
     </div>
   </div>
+  <button onclick="openCard()">Mở thiệp</button>
 </div>
+
+  
 
 
   <!-- Bản đồ vị trí -->
@@ -235,6 +303,21 @@ btn.addEventListener('click',()=>{
 document.addEventListener('DOMContentLoaded', ()=>{
   setTimeout(()=>document.querySelector('.envelope').classList.add('open'), 500);
 });
+function openCard(){
+  document.querySelector('.envelope').classList.add('open');
+}
+function createFlower(){
+  const flower = document.createElement('div');
+  flower.classList.add('flower');
+  flower.innerHTML = "🌸"; // có thể thay bằng 🌺 🌹
+  flower.style.left = Math.random() * window.innerWidth + 'px';
+  flower.style.animationDuration = (3 + Math.random() * 5) + 's';
+  document.body.appendChild(flower);
+
+  setTimeout(()=>{ flower.remove(); }, 8000);
+}
+
+setInterval(createFlower, 500);
 
 </script>
 
