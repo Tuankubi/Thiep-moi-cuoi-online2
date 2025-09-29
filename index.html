@@ -164,6 +164,35 @@ form button:hover{
   header h1{font-size:32px;}
   .gallery img{width:100%;}
 }
+#calendar{
+  max-width:400px;
+  margin:auto;
+  text-align:center;
+}
+#current-date{
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+#calendar-table{
+  width:100%;
+  border-collapse: collapse;
+}
+#calendar-table th, #calendar-table td{
+  border:1px solid var(--red);
+  padding:8px;
+  text-align:center;
+}
+#calendar-table th{
+  background:var(--red);
+  color:#fff;
+}
+#calendar-table td.today{
+  background:var(--accent);
+  color:#fff;
+  font-weight:bold;
+}
+
 </style>
 </head>
 <body>
@@ -199,6 +228,23 @@ form button:hover{
     </div>
   </div>
 </div>
+<div class="section">
+  <h2>Lịch Ngày Tháng</h2>
+  <div id="calendar">
+    <div id="current-date"></div>
+    <table id="calendar-table">
+      <thead>
+        <tr>
+          <th>CN</th><th>T2</th><th>T3</th><th>T4</th><th>T5</th><th>T6</th><th>T7</th>
+        </tr>
+      </thead>
+      <tbody id="calendar-body">
+        <!-- Lịch tháng sẽ được JS tạo ra -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
   <!-- Bản đồ vị trí -->
   <div class="section">
@@ -234,6 +280,41 @@ btn.addEventListener('click',()=>{
 document.addEventListener('DOMContentLoaded', ()=>{
   setTimeout(()=>document.querySelector('.envelope').classList.add('open'), 500);
 });
+function renderCalendar(){
+  const today = new Date();
+  const currentMonth = today.getMonth();
+  const currentYear = today.getFullYear();
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  const daysInMonth = new Date(currentYear, currentMonth+1, 0).getDate();
+
+  document.getElementById('current-date').textContent = `Tháng ${currentMonth+1}, ${currentYear}`;
+
+  let calendarBody = document.getElementById('calendar-body');
+  calendarBody.innerHTML = "";
+  let date = 1;
+  for(let i=0;i<6;i++){
+    let row = document.createElement('tr');
+    for(let j=0;j<7;j++){
+      let cell = document.createElement('td');
+      if(i === 0 && j < firstDay){
+        cell.textContent = "";
+      } else if(date > daysInMonth){
+        cell.textContent = "";
+      } else {
+        cell.textContent = date;
+        if(date === today.getDate()){
+          cell.classList.add('today');
+        }
+        date++;
+      }
+      row.appendChild(cell);
+    }
+    calendarBody.appendChild(row);
+  }
+}
+
+renderCalendar();
+
 
 </script>
 
