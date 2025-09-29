@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Editor thiệp cưới</title>
+  <style>
+    body { display: flex; }
+    #formPane { width: 300px; padding: 20px; border-right: 1px solid #ccc; }
+    #previewPane { flex: 1; }
+    #previewPane iframe { width: 100%; height: 100vh; border: none; }
+  </style>
+</head>
+<body>
+  <div id="formPane">
+    <h2>Chỉnh sửa thông tin</h2>
+    <form id="editForm">
+      <label>Tên cô dâu & chú rể:<br>
+        <input type="text" name="names" value="A & B">
+      </label><br><br>
+      <label>Ngày & giờ:<br>
+        <input type="text" name="date" value="20 Tháng 12, 2025 — 10:00">
+      </label><br><br>
+      <label>Địa điểm:<br>
+        <input type="text" name="venue" value="Nhà hàng Hoa Mai">
+      </label><br><br>
+      <label>URL ảnh:<br>
+        <input type="text" name="img1" value="placeholder1.jpg">
+      </label><br><br>
+      <button type="submit">Cập nhật xem trước</button>
+      <button type="button" id="btnExport">Xuất thiệp (HTML)</button>
+    </form>
+  </div>
+  <div id="previewPane">
+    <iframe id="tplFrame" src=""></iframe>
+  </div>
+
+  <script>
+    // Lấy tên mẫu từ query string
+    const params = new URLSearchParams(window.location.search);
+    const tpl = params.get('tpl') || 'templates/template1.html';
+    const frame = document.getElementById('tplFrame');
+    frame.src = tpl;
+
+    document.getElementById('editForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const form = e.target;
+      const names = form.names.value;
+      const date = form.date.value;
+      const venue = form.venue.value;
+      const img1 = form.img1.value;
+
+      // Gửi dữ liệu để chèn vào iframe
+      frame.onload = () => {
+        const doc = frame.contentDocument || frame.contentWindow.document;
+        doc.getElementById('names').textContent = names;
+        doc.getElementById('date').textContent = date;
+        doc.getElementById('venue').textContent = venue;
+        doc.getElementById('img1').src = img1;
+      };
+      // reload iframe để chạy onload
+      frame.src = tpl;
+    });
+
+    document.getElementById('btnExport').addEventListener('click', () => {
+      const doc = frame.contentDocument || frame.contentWindow.document;
+      const html = doc.documentElement.outerHTML;
+      // tạo file và download
+      const blob = new Blob([html], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'thiệp-cưới.html';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
