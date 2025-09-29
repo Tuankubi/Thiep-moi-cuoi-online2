@@ -5,13 +5,14 @@
   <title>Tạo thiệp cưới online</title>
   <style>
     body { display: flex; margin: 0; font-family: sans-serif; height: 100vh; }
-    #formPane { width: 320px; padding: 20px; border-right: 1px solid #ccc; box-sizing: border-box; }
+    #formPane { width: 340px; padding: 20px; border-right: 1px solid #ccc; box-sizing: border-box; overflow-y: auto; }
     #previewPane { flex: 1; background: #faf0e6; overflow: auto; }
-    .card { max-width: 600px; margin: 40px auto; text-align: center; padding: 40px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); background: white; }
+    .card { max-width: 700px; margin: 30px auto; text-align: center; padding: 40px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); background: white; }
     .names { font-size: 36px; color: #b45b6c; font-family: serif; }
     .date { margin-top: 10px; font-size: 18px; color: #555; }
     .venue { margin-top: 15px; font-size: 20px; }
-    .gallery img { max-width: 100%; height: auto; margin-top:20px; border-radius: 8px; }
+    .photos { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+    .photos img { width: 200px; height: 250px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
     label { display: block; margin-top: 10px; font-size: 14px; }
     input { width: 100%; padding: 6px; margin-top: 4px; }
     button { margin-top: 15px; padding: 10px; width: 100%; border: none; background: #b45b6c; color: white; font-size: 16px; border-radius: 6px; cursor: pointer; }
@@ -32,8 +33,11 @@
       <label>Địa điểm:
         <input type="text" name="venue" value="Nhà hàng Hoa Mai, Hà Nội">
       </label>
-      <label>URL ảnh:
-        <input type="text" name="img1" value="https://picsum.photos/600/400?random=1">
+      <label>Ảnh cô dâu (URL):
+        <input type="text" name="brideImg" value="https://picsum.photos/200/250?random=11">
+      </label>
+      <label>Ảnh chú rể (URL):
+        <input type="text" name="groomImg" value="https://picsum.photos/200/250?random=22">
       </label>
       <button type="submit">Cập nhật xem trước</button>
       <button type="button" id="btnExport">Xuất thiệp (HTML)</button>
@@ -46,24 +50,26 @@
       <div class="names" id="names">Ngọc Anh & Minh Quân</div>
       <div class="date" id="date">20 Tháng 12, 2025 — 10:00</div>
       <div class="venue" id="venue">Nhà hàng Hoa Mai, Hà Nội</div>
-      <div class="gallery">
-        <img id="img1" src="https://picsum.photos/600/400?random=1" alt="">
+      <div class="photos">
+        <img id="brideImg" src="https://picsum.photos/200/250?random=11" alt="Cô dâu">
+        <img id="groomImg" src="https://picsum.photos/200/250?random=22" alt="Chú rể">
       </div>
     </div>
   </div>
 
   <script>
-    // Xử lý cập nhật form -> preview
+    // Cập nhật preview
     document.getElementById('editForm').addEventListener('submit', function(e){
       e.preventDefault();
-      const form = e.target;
-      document.getElementById('names').textContent = form.names.value;
-      document.getElementById('date').textContent = form.date.value;
-      document.getElementById('venue').textContent = form.venue.value;
-      document.getElementById('img1').src = form.img1.value;
+      const f = e.target;
+      document.getElementById('names').textContent = f.names.value;
+      document.getElementById('date').textContent = f.date.value;
+      document.getElementById('venue').textContent = f.venue.value;
+      document.getElementById('brideImg').src = f.brideImg.value;
+      document.getElementById('groomImg').src = f.groomImg.value;
     });
 
-    // Xuất file HTML (download)
+    // Xuất file HTML
     document.getElementById('btnExport').addEventListener('click', () => {
       const card = document.getElementById('previewPane').innerHTML;
       const fullHtml = `
@@ -74,11 +80,12 @@
           <title>Thiệp cưới của bạn</title>
           <style>
             body { background: #faf0e6; font-family: serif; }
-            .card { max-width: 600px; margin: 40px auto; text-align: center; padding: 40px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); background: white; }
+            .card { max-width: 700px; margin: 30px auto; text-align: center; padding: 40px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); background: white; }
             .names { font-size: 36px; color: #b45b6c; }
             .date { margin-top: 10px; font-size: 18px; color: #555; }
             .venue { margin-top: 15px; font-size: 20px; }
-            .gallery img { max-width: 100%; border-radius: 8px; margin-top:20px; }
+            .photos { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+            .photos img { width: 200px; height: 250px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
           </style>
         </head>
         <body>
