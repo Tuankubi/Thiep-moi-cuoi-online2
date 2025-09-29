@@ -8,6 +8,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
+  .envelope{position:relative;width:600px;margin:auto;}
+.left-flap, .right-flap{
+  position:absolute;
+  top:0; width:50%; height:200px;
+  background:var(--red);
+  transition: transform 1s;
+  transform-origin: left;
+}
+.right-flap{left:50%; transform-origin:right;}
+.envelope.open .left-flap{transform: rotateY(-120deg);}
+.envelope.open .right-flap{transform: rotateY(120deg);}
+.invite-content{opacity:0; transition: opacity 1s; text-align:center;}
+.envelope.open .invite-content{opacity:1;}
 :root{
   --red:#c71c2b;
   --accent:#e94b56;
@@ -155,7 +168,10 @@ form button:hover{
   </div>
 
   <!-- Nội dung thiệp -->
-  <div class="section">
+   <div class="envelope">
+  <div class="left-flap"></div>
+  <div class="right-flap"></div>
+  <div class="invite-content">
     <h2>Lời Mời</h2>
     <div class="invite-text">
       <p>Trân trọng kính mời Quý khách tới dự bữa cơm thân mật chung vui cùng gia đình chúng tôi.</p>
@@ -164,6 +180,7 @@ form button:hover{
       <p>Sự hiện diện của Quý vị là niềm vinh hạnh cho gia đình chúng tôi!</p>
     </div>
   </div>
+</div>
 
   <!-- Bản đồ vị trí -->
   <div class="section">
@@ -196,7 +213,9 @@ btn.addEventListener('click',()=>{
     playing = false;
   }
 });
-
+document.addEventListener('DOMContentLoaded', ()=>{
+  setTimeout(()=>document.querySelector('.envelope').classList.add('open'), 500);
+});
 
 </script>
 
