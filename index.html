@@ -106,9 +106,32 @@ header p{margin:4px 0 0;font-size:16px;}
   cursor:pointer;
   box-shadow:0 4px 12px rgba(0,0,0,0.25);
 }
+
+/* RSVP form */
+form{
+  display:flex;
+  flex-direction:column;
+}
+form input, form select, form button{
+  margin-bottom:10px;
+  padding:10px;
+  font-size:16px;
+}
+form button{
+  background:var(--red);
+  color:#fff;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+form button:hover{
+  background:var(--accent);
+}
+
 @media(max-width:600px){
   .section{border-width:6px;padding:14px;}
   header h1{font-size:32px;}
+  .gallery img{width:100%;}
 }
 </style>
 </head>
@@ -125,7 +148,6 @@ header p{margin:4px 0 0;font-size:16px;}
   <div class="section">
     <h2>Ảnh Cô Dâu &amp; Chú Rể</h2>
     <div class="gallery">
-      <!-- Thay link ảnh bên dưới bằng ảnh thật -->
       <img src="https://placehold.co/600x800?text=Ảnh+Cô+Dâu" alt="Bride">
       <img src="https://placehold.co/600x800?text=Ảnh+Chú+Rể" alt="Groom">
       <img src="https://placehold.co/600x800?text=Ảnh+Cặp+Đôi" alt="Couple">
@@ -148,11 +170,31 @@ header p{margin:4px 0 0;font-size:16px;}
     <h2>Bản Đồ</h2>
     <p style="text-align:center">Nhấn vào bản đồ để xem đường đi:</p>
     <div class="map-wrap">
-      <!-- Thay src bên dưới bằng link Google Maps của bạn -->
       <iframe 
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.560023742691!2d105.8411700747785!3d21.011199380634246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abfd2d7ec167%3A0x8e8d5c915aa2a5c7!2zSGFub2kgSGlsbCBMYWtl!5e0!3m2!1svi!2s!4v1700000000000"
         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
+  </div>
+
+  <!-- Form RSVP -->
+  <div class="section">
+    <h2>RSVP - Xác Nhận Tham Dự</h2>
+    <form id="rsvpForm">
+      <label>Tên khách mời:</label>
+      <input type="text" name="name" required placeholder="Nhập tên của bạn">
+      
+      <label>Email:</label>
+      <input type="email" name="email" required placeholder="Nhập email">
+      
+      <label>Bạn có tham dự không?</label>
+      <select name="attend" required>
+        <option value="">Chọn...</option>
+        <option value="yes">Có</option>
+        <option value="no">Không</option>
+      </select>
+      
+      <button type="submit">Gửi</button>
+    </form>
   </div>
 
 </div>
@@ -176,6 +218,13 @@ btn.addEventListener('click',()=>{
     btn.textContent='▶️';
     playing = false;
   }
+});
+
+// RSVP form
+document.getElementById('rsvpForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  alert('Cảm ơn bạn đã xác nhận!');
+  this.reset();
 });
 </script>
 
