@@ -1,158 +1,509 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thiệp Cưới Tuấn Anh & Thảo Anh</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', cursive, sans-serif;
-      background: #fff;
-      color: #333;
-      text-align: center;
-      overflow-x: hidden;
-    }
-    section {
-      padding: 40px 20px;
-      min-height: 100vh;
-    }
-    h1, h2 {
-      font-family: 'Dancing Script', cursive;
-    }
-    .hero {
-      background: url("wedding-bg.jpg") no-repeat center/cover;
-      color: black;
-    }
-    .hero img {
-      max-width: 300px;
-      border-radius: 15px;
-      margin: 20px auto;
-      display: block;
-    }
-    .date-time {
-      font-size: 22px;
-      margin-top: 10px;
-    }
-    .calendar {
-      margin: 30px auto;
-      border-collapse: collapse;
-      width: 90%;
-      max-width: 400px;
-    }
-    .calendar th, .calendar td {
-      border: 1px solid #ccc;
-      padding: 12px;
-      text-align: center;
-    }
-    .calendar th {
-      background: #f7f7f7;
-    }
-    .highlight {
-      background: #ffdde1;
-      color: red;
-      font-weight: bold;
-      border-radius: 50%;
-    }
-    iframe {
-      margin-top: 20px;
-      width: 100%;
-      max-width: 600px;
-      height: 350px;
-      border: 0;
-    }
-    .album {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .album img {
-      width: 220px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thiệp Cưới Hồng - Tuấn Anh & Thảo Anh</title>
 
-    /* Hiệu ứng trái tim rơi */
-    .heart {
-      position: fixed;
-      top: -50px;
-      font-size: 20px;
-      animation: fall linear forwards;
-      pointer-events: none;
-      z-index: 9999;
-    }
-    @keyframes fall {
-      0% { transform: translateY(0) rotate(0deg); }
-      100% { transform: translateY(100vh) rotate(360deg); }
-    }
-  </style>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* ========================================================= */
+        /* 1. BIẾN CSS & CƠ BẢN */
+        /* ========================================================= */
+        :root {
+            --primary-pink: #ff69b4; /* Hồng đậm hơn */
+            --light-pink: #ffe4e1;   /* Hồng nhạt Blush */
+            --white-creamy: #fdfcf9; /* Trắng kem */
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --font-script: 'Great Vibes', cursive;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #fffafa 0%, #fcecf4 100%); /* Nền hồng nhạt */
+            line-height: 1.6;
+            overflow-x: hidden; /* Ngăn chặn scroll ngang */
+            scroll-behavior: smooth; /* Cuộn mượt mà */
+        }
+
+        .container {
+            max-width: 768px; /* Tối ưu cho thiết bị di động / story-like */
+            margin: auto;
+            background: var(--white-creamy); /* Nền các section là trắng kem */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* ========================================================= */
+        /* 2. SECTION CHUNG & HEADER */
+        /* ========================================================= */
+        .section {
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 105, 180, 0.1); /* Đường phân cách mảnh */
+        }
+        .section-full-height {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .section h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2em;
+            color: var(--primary-pink);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-pink);
+            margin: 10px auto 0;
+        }
+        .section p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        /* Header / Save The Date */
+        .header-section {
+            background-image: url('https://i.imgur.com/Gj8x3Jt.jpg'); /* Thay bằng ảnh nền đẹp */
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .header-section .overlay {
+            background: rgba(0, 0, 0, 0.3); /* Lớp phủ tối để chữ nổi bật */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .header-section > * {
+            position: relative;
+            z-index: 1;
+        }
+        .header-section h1 {
+            font-family: var(--font-script);
+            font-size: 4.5em; /* Lớn hơn cho "Save The Date" */
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        .header-section h3 {
+            font-family: var(--font-script);
+            font-size: 2.8em;
+            margin: 10px 0 20px;
+            color: var(--white-creamy);
+        }
+        .header-date {
+            font-family: var(--font-heading);
+            font-size: 1.8em;
+            color: var(--light-pink);
+            margin-top: 20px;
+            border-top: 2px solid var(--light-pink);
+            border-bottom: 2px solid var(--light-pink);
+            padding: 10px 0;
+            display: inline-block;
+        }
+        .header-section p {
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+
+        /* ========================================================= */
+        /* 3. GALLERY & THÔNG TIN CƠ BẢN */
+        /* ========================================================= */
+        .photo-gallery {
+            padding-bottom: 0; /* Gallery thường tràn viền */
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 250px; /* Chiều cao cố định cho ảnh chân dung */
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-item.main img {
+            height: 350px; /* Ảnh chính lớn hơn */
+        }
+
+        .invitation-card {
+            background: var(--light-pink); /* Nền hồng cho thiệp */
+            color: var(--text-dark);
+            padding: 40px 20px;
+            margin: 30px auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            max-width: 90%;
+        }
+        .invitation-card h3 {
+            font-family: var(--font-script);
+            font-size: 2.5em;
+            color: var(--primary-pink);
+            margin: 15px 0;
+        }
+        .invitation-card p {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        .invitation-card .highlight {
+            font-weight: bold;
+            color: var(--primary-pink);
+            font-size: 1.2em;
+        }
+        .invitation-card hr {
+            border: none;
+            border-top: 1px dashed rgba(255, 105, 180, 0.4);
+            margin: 25px auto;
+            width: 80%;
+        }
+
+        /* ========================================================= */
+        /* 4. ĐỊA ĐIỂM & RSVP */
+        /* ========================================================= */
+        .location-map {
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .location-map iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
+        }
+
+        .rsvp-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        .rsvp-form input,
+        .rsvp-form select {
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            width: 100%;
+        }
+        .rsvp-form button {
+            background: var(--primary-pink);
+            color: var(--text-light);
+            padding: 14px 25px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .rsvp-form button:hover {
+            background: darken(var(--primary-pink), 10%); /* Thay đổi màu khi hover */
+            background: #ff4d94; /* Màu hồng đậm hơn một chút */
+        }
+
+        /* ========================================================= */
+        /* 5. NÚT ĐIỀU KHIỂN & HIỆU ỨNG */
+        /* ========================================================= */
+        .music-control {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--primary-pink);
+            color: var(--text-light);
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 1.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+            transition: transform 0.2s ease;
+        }
+        .music-control:hover {
+            transform: scale(1.05);
+        }
+
+        .heart {
+            position: fixed;
+            top: -50px;
+            font-size: 1.2em;
+            opacity: 0;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header-section h1 {
+                font-size: 3.5em;
+            }
+            .header-section h3 {
+                font-size: 2.2em;
+            }
+            .header-date {
+                font-size: 1.5em;
+            }
+            .section h2 {
+                font-size: 1.8em;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-item img {
+                height: 200px;
+            }
+            .gallery-item.main img {
+                height: 300px;
+            }
+            .invitation-card h3 {
+                font-size: 2em;
+            }
+            .invitation-card p {
+                font-size: 1em;
+            }
+            .music-control {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2em;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Trang 1 -->
-  <section class="hero">
-    <h1>Save The Date</h1>
-    <h2>Tuấn Anh & Thảo Anh</h2>
-    <img src="anh-cuoi-1.jpg" alt="Ảnh cưới">
-    <div class="date-time">
-      ⏰ 16:30 - Chủ Nhật, 30/03/2025 <br>
-      (Tức ngày 02 tháng 03 năm Ất Tỵ)
-    </div>
-    <p><i>Một hành trình mới bắt đầu từ hôm nay</i></p>
-  </section>
+    <div class="container">
 
-  <!-- Trang 2 -->
-  <section>
-    <h1>Save The Date</h1>
-    <h2>Tháng 03 - 2025</h2>
-    <table class="calendar">
-      <tr>
-        <th>CN</th><th>T2</th><th>T3</th><th>T4</th><th>T5</th><th>T6</th><th>T7</th>
-      </tr>
-      <tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
-      <tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
-      <tr><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>
-      <tr><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr>
-      <tr><td class="highlight">30 ❤️</td><td>31</td><td colspan="5"></td></tr>
-    </table>
-  </section>
+        <div class="section header-section">
+            <div class="overlay"></div>
+            <h1>Save The Date</h1>
+            <h3>Tuấn Anh & Thảo Anh</h3>
+            <p>MỘT HÀNH TRÌNH MỚI BẮT ĐẦU TỪ HÔM NAY</p>
+            <div class="header-date">
+                16:30 <br>
+                Chủ Nhật <br>
+                30.03.2025 <br>
+                <small>(Tức Ngày 02 Tháng 03 Năm Ất Tỵ)</small>
+            </div>
+        </div>
 
-  <!-- Trang 3 -->
-  <section>
-    <h1>Địa điểm tổ chức</h1>
-    <h2>Khách sạn White Palace</h2>
-    <p>📍 245B Trần Thái Tông, Trần Hưng, Thái Bình</p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.90173974234!2d106.14385961452076!3d21.195477822402264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135acd74c1bafcd%3A0x4e8ef5d7bbf9999!2sWhite%20Palace!5e0!3m2!1svi!2s!4v1759284920258!5m2!1svi!2s"></iframe>
+        <div class="section section-full-height">
+            <h2>Thư Mời</h2>
+            <p>Tham dự lễ cưới của **Tuấn Anh & Thảo Anh**</p>
+            <div class="gallery-grid" style="margin-bottom: 30px;">
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/v8tT9oG.jpg" alt="Ảnh Cô Dâu">
+                </div>
+                <div class="gallery-item main">
+                    <img src="https://i.imgur.com/Gj8x3Jt.jpg" alt="Ảnh Cặp Đôi Chính">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/e5j02uJ.jpg" alt="Ảnh Chú Rể">
+                </div>
+            </div>
+            
+            <div class="invitation-card">
+                <p>Bằng tất cả sự chân thành, chúng tôi xin trân trọng kính mời:</p>
+                <p class="highlight">[Tên Khách Mời]</p>
+                <p>Tới dự buổi **Lễ Thành Hôn** của hai con chúng tôi:</p>
+                <h3>Tuấn Anh & Thảo Anh</h3>
+                <hr>
+                <p><i class="far fa-calendar-alt" style="color:var(--primary-pink);"></i> **Thời gian:** <span class="highlight">16:30 chiều — Chủ Nhật, 30/03/2025</span></p>
+                <p><i class="fas fa-map-marker-alt" style="color:var(--primary-pink);"></i> **Địa điểm:** <span class="highlight">Khách sạn White Palace, 245b Trần Thái Tông, Trần Hưng, Thái Bình</span></p>
+                <p style="margin-top:25px; font-style:italic;">Sự hiện diện và lời chúc phúc của Quý vị là niềm vinh dự lớn lao cho gia đình chúng tôi!</p>
+            </div>
 
-    <h2>Album Ảnh Cưới</h2>
-    <div class="album">
-      <img src="anh-cuoi-2.jpg" alt="Ảnh cưới 2">
-      <img src="anh-cuoi-3.jpg" alt="Ảnh cưới 3">
-      <img src="anh-cuoi-4.jpg" alt="Ảnh cưới 4">
-    </div>
-  </section>
+            <button class="action-button" onclick="alert('Chức năng gửi lời chúc sẽ được tích hợp sau!')">
+                <i class="fas fa-heart" style="margin-right: 8px;"></i> Gửi Lời Chúc Phúc
+            </button>
+            <button class="action-button" style="background: #e74c3c;" onclick="alert('Chức năng mừng cưới online sẽ được tích hợp sau!')">
+                <i class="fas fa-gift" style="margin-right: 8px;"></i> Gửi Mừng Cưới
+            </button>
+        </div>
 
-  <!-- Nhạc nền -->
-  <audio autoplay loop>
-    <source src="wedding-song.mp3" type="audio/mpeg">
-  </audio>
+        <div class="section section-full-height">
+            <h2>Thông Tin Gia Đình</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 700px; margin: 20px auto;">
+                <div style="flex: 1; min-width: 280px; background: var(--white-creamy); padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                    <img src="https://i.imgur.com/p14wJ8c.jpg" alt="Chú rể" style="width: 150px; height: 180px; object-fit: cover; border-radius: 5px; margin-bottom: 15px;">
+                    <p style="font-weight: bold; color: var(--primary-pink); font-size: 1.1em;">Nhà Trai</p>
+                    <p>Ông: Tống Đình Quý</p>
+                    <p>Bà: Vũ Hoài Văn</p>
+                    <p style="margin-top: 10px; font-style: italic; font-size: 0.95em;">106 Lê Lợi, Đề Thám, TP. Thái Bình</p>
+                    <h3 style="font-family: var(--font-script); color: var(--primary-pink); font-size: 2em; margin-top: 15px;">Tuấn Anh</h3>
+                </div>
+                <div style="flex: 1; min-width: 280px; background: var(--white-creamy); padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                    <img src="https://i.imgur.com/hK8bZ9C.jpg" alt="Cô dâu" style="width: 150px; height: 180px; object-fit: cover; border-radius: 5px; margin-bottom: 15px;">
+                    <p style="font-weight: bold; color: var(--primary-pink); font-size: 1.1em;">Nhà Gái</p>
+                    <p>Ông: Vũ Tuấn Anh</p>
+                    <p>Bà: Vũ Thị Hoa</p>
+                    <p style="margin-top: 10px; font-style: italic; font-size: 0.95em;">Quang Khải, Tứ Kỳ, Hải Dương</p>
+                    <h3 style="font-family: var(--font-script); color: var(--primary-pink); font-size: 2em; margin-top: 15px;">Thảo Anh</h3>
+                </div>
+            </div>
+        </div>
 
-  <script>
-    // Trái tim rơi
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      const icons = ["❤️","💖","💕","💗","💓"];
-      heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.animationDuration = (3 + Math.random() * 5) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => { heart.remove(); }, 8000);
-    }
-    setInterval(createHeart, 400);
-  </script>
+        <div class="section section-full-height">
+            <h2>Địa Điểm Tổ Chức</h2>
+            <div class="location-info" style="margin-bottom: 20px;">
+                <p style="font-size: 1.2em; font-weight: bold; color: var(--primary-pink);">Khách sạn White Palace</p>
+                <p>245b Trần Thái Tông, Trần Hưng, Thái Bình</p>
+            </div>
+            <div class="location-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.469145942377!2d106.1260271!3d20.4578964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135e5d3c5f2b2b1%3A0x8f7d9c6e3b0b7e2c!2sWhite%20Palace%20Hotel!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <p style="margin-top: 20px; font-style: italic;"><a href="https://maps.app.goo.gl/YourActualGoogleMapsLink" target="_blank" style="color: var(--primary-pink); text-decoration: none; font-weight: bold;">Xem bản đồ lớn hơn <i class="fas fa-external-link-alt"></i></a></p>
+        </div>
+
+        <div class="section">
+            <h2>Album Ảnh Cưới</h2>
+            <p style="font-family: var(--font-script); font-size: 1.8em; color: var(--primary-pink);">Dream Local</p>
+            <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/8f1zY4b.jpg" alt="Ảnh cưới 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/e5j02uJ.jpg" alt="Ảnh cưới 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/Gj8x3Jt.jpg" alt="Ảnh cưới 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/v8tT9oG.jpg" alt="Ảnh cưới 4">
+                </div>
+            </div>
+        </div>
+
+        <div class="section header-section">
+            <div class="overlay" style="background: rgba(255, 105, 180, 0.4);"></div>
+            <h1>Thank You</h1>
+            <p style="font-family: var(--font-heading); font-size: 1.5em; color: var(--white-creamy); margin-top: 15px;">Rất hân hạnh đón tiếp Quý vị!</p>
+            <p style="font-size: 0.9em; margin-top: 20px; color: rgba(255,255,255,0.8);">Mimosa Wedding - since 2025</p>
+        </div>
+
+    </div> <audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2022/08/04/audio_53e029c99c.mp3?filename=wedding-background-118901.mp3" loop></audio>
+    <button class="music-control" id="musicBtn"><i class="fas fa-play"></i></button>
+
+    <script>
+        // =========================================================
+        // JAVASCRIPT: LOGIC VÀ HIỆU ỨNG
+        // =========================================================
+        const music = document.getElementById('bgMusic');
+        const btn = document.getElementById('musicBtn');
+        let playing = false;
+
+        // Tự động phát nhạc sau khi trang tải (nếu trình duyệt cho phép)
+        // Đây là cách phổ biến để thử auto-play, nhưng vẫn có thể bị chặn.
+        // Tốt nhất là kích hoạt sau tương tác người dùng.
+        window.addEventListener('load', () => {
+            // Không tự động play ngay, chờ người dùng tương tác nút nhạc
+            // hoặc cuộn trang để tránh bị chặn.
+        });
+
+        // Điều khiển nhạc
+        btn.addEventListener('click', () => {
+            if (!playing) {
+                music.play().then(() => {
+                    btn.innerHTML = '<i class="fas fa-pause"></i>';
+                    playing = true;
+                }).catch(error => {
+                    console.log("Phát nhạc bị chặn hoặc có lỗi:", error);
+                });
+            } else {
+                music.pause();
+                btn.innerHTML = '<i class="fas fa-play"></i>';
+                playing = false;
+            }
+        });
+
+        // Hiệu ứng Trái tim Rơi (Confetti lãng mạn)
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const icons = ["❤️", "💖", "💕", "✨", "💍", "🌸", "🌷"]; // Thêm biểu tượng lãng mạn hơn
+            heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            
+            // Random vị trí, kích thước, độ mờ, tốc độ
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+            heart.style.opacity = (0.6 + Math.random() * 0.4);
+            heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+            
+            document.body.appendChild(heart);
+            
+            // Xóa sau khi hoàn tất animation để không làm nặng DOM
+            setTimeout(() => heart.remove(), 8000); 
+        }
+        setInterval(createHeart, 250); // Tần suất rơi dày hơn một chút
+    </script>
+
 </body>
 </html>
