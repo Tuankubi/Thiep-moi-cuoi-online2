@@ -3,217 +3,309 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Thiệp cưới Online</title>
+<title>Thiệp cưới Online - Nguyễn Tiến Tuấn & Nguyễn Thị Hương</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --red:#c71c2b;
-  --accent:#e94b56;
-  --bg:#fff;
+/* ========================================================= */
+/* 1. THIẾT LẬP BIẾN & CƠ BẢN */
+/* ========================================================= */
+:root {
+  /* Màu sắc chủ đạo: Đỏ Rượu Vang & Vàng Đồng */
+  --wine-red: #8b0000;
+  --gold: #f8b500;
+  --blush-pink: #ffe4e1;
+  --text-dark: #2c3e50;
+  --bg-light: #fdfcf9;
 }
 *{box-sizing:border-box;}
-body{
-  margin:0;
-  font-family:"Roboto",sans-serif;
-  background: linear-gradient(120deg, #fceabb, #f8b500);
-  background-size:400% 400%;
-  animation: gradientBG 15s ease infinite;
-  color:#333;
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  /* Nền màu kem/vàng nhạt, tinh tế */
+  background: linear-gradient(135deg, #fffcf0 0%, #fef8e7 100%);
+  color: var(--text-dark);
+  line-height: 1.6;
 }
-@keyframes gradientBG{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
-header{
-  background:var(--red);
-  color:#fff;
-  padding:20px;
-  text-align:center;
-}
-header h1{
-  font-family:"Great Vibes",cursive;
-  font-size:40px;
-  margin:0;
-}
-header p{margin:4px 0 0;font-size:16px;}
-
 .container{max-width:1000px;margin:auto;padding:20px;}
-.section{
-  background:#fff;
-  border:10px solid var(--red);
-  padding:20px;
-  margin-bottom:30px;
-  box-shadow:0 4px 20px rgba(0,0,0,0.1);
+
+/* ========================================================= */
+/* 2. HEADER & SECTION */
+/* ========================================================= */
+header {
+  background: var(--wine-red); /* Đỏ rượu vang đậm */
+  color: var(--bg-light);
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-.section h2{
-  font-family:"Playfair Display",serif;
-  font-size:28px;
-  color:var(--red);
-  text-align:center;
-  margin-top:0;
+header h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 52px;
+  margin: 0;
+  letter-spacing: 2px;
+}
+header p {
+  margin: 8px 0 0;
+  font-size: 18px;
+  font-weight: 300;
 }
 
-/* Gallery */
-.gallery{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
+.section {
+  background: var(--bg-light);
+  border: 1px solid rgba(139, 0, 0, 0.1);
+  border-left: 8px solid var(--wine-red); /* Điểm nhấn */
+  padding: 30px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
-.gallery img{
-  width:300px;
-  max-width:100%;
-  border-radius:10px;
-  object-fit:cover;
-  transition:transform 0.5s, box-shadow 0.5s;
-  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+.section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: var(--wine-red);
+  text-align: center;
+  margin-bottom: 25px;
+  position: relative;
 }
-.gallery img:hover{
-  transform:scale(1.05) rotate(1deg);
-  box-shadow:0 6px 20px rgba(0,0,0,0.3);
+/* Hiệu ứng gạch chân vàng */
+.section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 10px auto 0;
 }
 
-/* Invitation animation */
-.invitation-wrapper{position:relative;width:400px;margin:50px auto;text-align:center;}
+/* ========================================================= */
+/* 3. GALLERY (ẢNH) */
+/* ========================================================= */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+  justify-content: center;
+}
+.gallery img {
+  width: 100%;
+  aspect-ratio: 4/5; /* Tỉ lệ chuẩn cho ảnh chân dung */
+  border-radius: 12px;
+  object-fit: cover;
+  transition: all 0.4s ease-out;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+.gallery img:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================================= */
+/* 4. INVITATION (THIỆP MỞ) */
+/* ========================================================= */
+.invitation-wrapper{position:relative;width:400px;max-width:90%;margin:50px auto;text-align:center;}
 .envelope{position:relative;width:100%;height:300px;perspective:1000px;}
 .left-door,.right-door{
-  position:absolute;width:50%;height:100%;top:0;
-  background:#ffb6c1;border:2px solid #fff;
-  transition:transform 1.5s ease-in-out;
-  z-index:2;
+  position:absolute;width:50%;height:100%;top:0;
+  background:var(--blush-pink); /* Hồng phấn */
+  border:2px solid var(--wine-red);
+  transition:transform 1.5s ease-in-out;
+  z-index:2;
 }
 .left-door{left:0;transform-origin:left;}
 .right-door{right:0;transform-origin:right;}
 .content{
-  position:absolute;top:0;left:0;width:100%;height:100%;
-  background:#fff;border:2px solid #ffb6c1;
-  padding:20px;box-sizing:border-box;
-  opacity:0;transition:opacity 1s ease-in-out;z-index:1;
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background:#fff;border:2px solid var(--blush-pink);
+  padding:20px;box-sizing:border-box;
+  opacity:0;transition:opacity 1s ease-in-out 0.5s;z-index:1;
 }
-.envelope.open .left-door{transform:rotateY(-100deg);}
-.envelope.open .right-door{transform:rotateY(100deg);}
+.envelope.open .left-door{transform:rotateY(-130deg);} /* Mở rộng */
+.envelope.open .right-door{transform:rotateY(130deg);}
 .envelope.open .content{opacity:1;}
+.content h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 40px;
+  color: var(--wine-red);
+  margin-bottom: 15px;
+}
 
-/* Map */
+/* ========================================================= */
+/* 5. MAP & FORM & BUTTONS */
+/* ========================================================= */
 .map-wrap{display:flex;justify-content:center;margin-top:20px;}
 .map-wrap iframe{width:100%;max-width:700px;height:400px;border:0;border-radius:10px;}
 
-/* RSVP form */
 form{display:flex;flex-direction:column;}
 form input,form select,form button{
-  margin-bottom:10px;padding:10px;font-size:16px;
+  margin-bottom:12px;padding:12px;font-size:16px;border-radius:5px;border:1px solid #ccc;
 }
-form button{
-  background:var(--red);color:#fff;border:none;border-radius:5px;cursor:pointer;
+form button,.invitation-wrapper button{
+  background:var(--wine-red) !important;
+  color:var(--bg-light) !important;
+  border:none !important;
+  border-radius: 30px !important; /* Bo tròn hoàn toàn */
+  padding: 12px 25px !important;
+  font-weight: 700;
+  cursor:pointer;
+  transition: background 0.3s ease, color 0.3s ease;
 }
-form button:hover{background:var(--accent);}
+form button:hover,.invitation-wrapper button:hover{
+  background:var(--gold) !important;
+  color:var(--text-dark) !important;
+}
 
 /* Music control */
 .music-control{
-  position:fixed;bottom:20px;right:20px;
-  background:var(--red);color:#fff;border:none;
-  border-radius:50%;width:60px;height:60px;font-size:22px;
-  cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.25);z-index:999;
+  position:fixed;bottom:30px;right:30px;
+  background:var(--wine-red);color:#fff;border:none;
+  border-radius:50%;width:50px;height:50px;font-size:20px;
+  cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.3);z-index:999;
 }
 
 /* Heart animation */
 .heart{
-  position:fixed;top:-50px;font-size:20px;
-  animation:fall linear forwards;pointer-events:none;z-index:9999;
+  position:fixed;top:-50px;
+  animation:fall linear forwards;pointer-events:none;z-index:9999;
 }
 @keyframes fall{
-  0%{transform:translateY(0) rotate(0deg);}
-  100%{transform:translateY(100vh) rotate(360deg);}
+  0%{transform:translateY(0) rotate(0deg);}
+  100%{transform:translateY(100vh) rotate(360deg);}
 }
 
+/* ========================================================= */
+/* 6. MEDIA QUERIES (RESPONSIVE) */
+/* ========================================================= */
 @media(max-width:600px){
-  .section{border-width:6px;padding:14px;}
-  header h1{font-size:32px;}
-  .gallery img{width:100%;}
+  .section{border-width:6px;padding:15px;}
+  header h1{font-size:42px;}
+  .gallery{grid-template-columns:1fr;}
+  .music-control{width:45px;height:45px;bottom:20px;right:20px;font-size:18px;}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Nguyễn Tiến Tuấn &amp; Nguyễn Thị Hương</h1>
-  <p>Lễ Thành Hôn — 18 / 10 / 2025</p>
+  <h1>Nguyễn Tiến Tuấn & Nguyễn Thị Hương</h1>
+  <p>Lễ Thành Hôn — Thứ Ba, ngày 18 / 10 / 2025</p>
 </header>
 
 <div class="container">
 
-  <!-- Ảnh -->
-  <div class="section">
-    <h2>Ảnh Cô Dâu &amp; Chú Rể</h2>
-    <div class="gallery">
-      <img src="./templates/Hinh-anh-gai-xinh-deo-no-sieu-cute.jpg" alt="Bride">
-      <img src="./templates/anh-chan-dung-trai-dep.jpg" alt="Groom">
-      <img src="./templates/Hinh-anh-gai-xinh-deo-no-sieu-cute.jpg" alt="Couple">
-    </div>
-  </div>
+    <div class="section photo-gallery">
+    <h2>Khoảnh Khắc Hạnh Phúc</h2>
+    <div class="gallery">
+            <img src="anh_co_dau.jpg" alt="Cô Dâu">
+      <img src="anh_chu_re.jpg" alt="Chú Rể">
+      <img src="anh_doi.jpg" alt="Ảnh Cặp Đôi">
+    </div>
+  </div>
 
-  <!-- Thiệp mở -->
-  <div class="invitation-wrapper">
-    <div class="envelope">
-      <div class="left-door"></div>
-      <div class="right-door"></div>
-      <div class="content">
-        <h1>Thiệp Mời</h1>
-        <p>Trân trọng kính mời Quý khách tới dự bữa cơm thân mật chung vui cùng gia đình chúng tôi.</p>
-        <p>Địa điểm: <strong>Tư Gia Nhà Trai – Tiên Kiên, Trường Sơn, Bắc Ninh</strong></p>
-        <p>Thời gian: <strong>10 giờ 00 — Thứ Ba, ngày 18/10/2025</strong><br>(Tức ngày 21 tháng 09 năm Ất Tỵ)</p>
-        <p>Sự hiện diện của Quý vị là niềm vinh hạnh cho gia đình chúng tôi!</p>
-      </div>
-    </div>
-    <button onclick="openCard()">Mở thiệp</button>
-  </div>
+    <div class="invitation-wrapper">
+    <div class="envelope">
+      <div class="left-door"></div>
+      <div class="right-door"></div>
+      <div class="content">
+        <h1>Lời Mời Trân Trọng</h1>
+        <p style="font-size:17px;">Bằng tất cả sự chân thành, chúng tôi xin trân trọng kính mời:</p>
+        <p style="font-size:20px; font-weight:700; color:var(--wine-red);">**Ông/Bà/Anh/Chị** [Tên Khách Mời]</p>
+        <p style="margin-top:20px;">Tới dự buổi **Lễ Thành Hôn** của hai con chúng tôi:</p>
+        <h3 style="font-family:'Playfair Display',serif; font-size:24px; color:var(--wine-red); margin-top:5px;">Nguyễn Tiến Tuấn & Nguyễn Thị Hương</h3>
 
-  <!-- Bản đồ -->
-  <div class="section">
-    <h2>Bản Đồ</h2>
-    <p style="text-align:center">Nhấn vào bản đồ để xem đường đi:</p>
-    <div class="map-wrap">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!... (map của bạn) ..." allowfullscreen="" loading="lazy"></iframe>
-    </div>
-  </div>
+        <hr style="border-color:#eee; margin:20px 0;">
+
+        <p>Thời gian: <strong>10:00 sáng — Thứ Ba, ngày 18/10/2025</strong><br><small>(Tức ngày 21 tháng 09 năm Ất Tỵ)</small></p>
+        <p>Địa điểm: <strong>Tư Gia Nhà Trai – Tiên Kiên, Trường Sơn, Bắc Ninh</strong></p>
+        <p style="margin-top:20px; font-style:italic; font-size:16px;">Sự hiện diện và lời chúc phúc của Quý vị là niềm vinh dự lớn lao cho gia đình chúng tôi!</p>
+      </div>
+    </div>
+    <button onclick="openCard()">Mở Lời Mời</button>
+  </div>
+
+    <div class="section location">
+    <h2>Chỉ Dẫn Đến Buổi Lễ</h2>
+    <p style="text-align:center;">Xin mời theo dõi bản đồ để đến với tư gia nhà trai.</p>
+    <div class="map-wrap">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6349.897242662004!2d106.14385961452076!3d21.195477822402264!3m2!1i1024!2i768!4f13.1!5e1!3m2!1svi!2s!4v1759284920258!5m2!1svi!2s"
+        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+
+    <div class="section rsvp-form">
+    <h2>Xác Nhận Tham Dự</h2>
+    <p style="text-align:center; margin-bottom:20px;">Vui lòng xác nhận sự hiện diện của Quý vị trước ngày 10/10/2025.</p>
+    <form onsubmit="alert('Xác nhận đã được gửi! Cảm ơn Quý vị.'); return false;">
+      <input type="text" placeholder="Họ và Tên Quý Vị" required>
+      <select required>
+        <option value="" disabled selected>Quý vị sẽ tham dự?</option>
+        <option value="yes">Tham dự (Có mặt)</option>
+        <option value="no">Rất tiếc (Không thể tham dự)</option>
+      </select>
+      <input type="number" placeholder="Số lượng khách đi cùng (Nếu có)" min="0">
+      <button type="submit">Gửi Xác Nhận</button>
+    </form>
+  </div>
 
 </div>
 
-<!-- Nhạc nền -->
 <audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2022/08/04/audio_53e029c99c.mp3?filename=wedding-background-118901.mp3" loop></audio>
 <button class="music-control" id="musicBtn">▶️</button>
 
 <script>
-const music=document.getElementById('bgMusic');
-const btn=document.getElementById('musicBtn');
-let playing=false;
-btn.addEventListener('click',()=>{
-  if(!playing){music.play();btn.textContent='⏸️';playing=true;}
-  else{music.pause();btn.textContent='▶️';playing=false;}
+/* ========================================================= */
+/* JAVASCRIPT: LOGIC VÀ HIỆU ỨNG */
+/* ========================================================= */
+const music = document.getElementById('bgMusic');
+const btn = document.getElementById('musicBtn');
+let playing = false;
+
+// 1. Mở thiệp và tự động phát nhạc (cần tương tác người dùng)
+function openCard() {
+  document.querySelector('.envelope').classList.add('open');
+  if (!playing) {
+    music.play().then(() => {
+      btn.textContent = '⏸️';
+      playing = true;
+    }).catch(error => {
+      // Nếu trình duyệt chặn auto-play, sẽ chờ người dùng click nút nhạc
+      console.log("Tự động phát nhạc bị chặn.");
+    });
+  }
+}
+
+// 2. Điều khiển nhạc
+btn.addEventListener('click', () => {
+  if (!playing) {
+    music.play();
+    btn.textContent = '⏸️';
+    playing = true;
+  } else {
+    music.pause();
+    btn.textContent = '▶️';
+    playing = false;
+  }
 });
 
-// Mở thiệp
-function openCard(){
-  document.querySelector('.envelope').classList.add('open');
+// 3. Hiệu ứng Trái tim Rơi (Confetti lãng mạn)
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  const icons = ["❤️", "💖", "💕", "✨", "💍"]; // Thêm biểu tượng lãng mạn
+  heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+  
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.fontSize = (18 + Math.random() * 18) + 'px';
+  heart.style.opacity = (0.5 + Math.random() * 0.5);
+  heart.style.animationDuration = (4 + Math.random() * 6) + 's';
+  
+  document.body.appendChild(heart);
+  
+  setTimeout(() => heart.remove(), 10000); 
 }
+setInterval(createHeart, 300); // Tạo một trái tim mỗi 0.3 giây
 
-// Trái tim rơi
-function createHeart(){
-  const heart=document.createElement('div');
-  heart.classList.add('heart');
-  const icons=["❤️","💖","💕","💗","💓"];
-  heart.innerHTML=icons[Math.floor(Math.random()*icons.length)];
-  heart.style.left=Math.random()*window.innerWidth+'px';
-  heart.style.fontSize=(16+Math.random()*20)+'px';
-  heart.style.animationDuration=(3+Math.random()*5)+'s';
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),8000);
-}
-setInterval(createHeart,400);
 </script>
 
 </body>
