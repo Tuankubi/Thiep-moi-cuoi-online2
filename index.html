@@ -1,130 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Thiệp Cưới Online</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thiệp Cưới Tuấn Anh & Thảo Anh</title>
   <style>
-    :root{
-      --red:#c71c2b;
-      --accent:#e94b56;
-      --bg:#fff;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', cursive, sans-serif;
+      background: #fff;
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
     }
-    *{box-sizing:border-box;}
-    body{
-      margin:0;
-      font-family:"Roboto",sans-serif;
-      background: linear-gradient(120deg, #fceabb, #f8b500);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color:#333;
+    section {
+      padding: 40px 20px;
+      min-height: 100vh;
     }
-    @keyframes gradientBG{
-      0%{background-position:0% 50%;}
-      50%{background-position:100% 50%;}
-      100%{background-position:0% 50%;}
+    h1, h2 {
+      font-family: 'Dancing Script', cursive;
     }
-
-    header{
-      background:var(--red);
-      color:#fff;
-      padding:20px;
-      text-align:center;
+    .hero {
+      background: url("wedding-bg.jpg") no-repeat center/cover;
+      color: black;
     }
-    header h1{
-      font-family:"Great Vibes",cursive;
-      font-size:48px;
-      margin:0;
+    .hero img {
+      max-width: 300px;
+      border-radius: 15px;
+      margin: 20px auto;
+      display: block;
     }
-    header p{margin:4px 0 0;font-size:18px;}
-
-    .container{
-      max-width:1000px;
-      margin:auto;
-      padding:20px;
+    .date-time {
+      font-size: 22px;
+      margin-top: 10px;
     }
-    .section{
-      background:#fff;
-      border:10px solid var(--red);
-      padding:20px;
-      margin-bottom:30px;
-      box-shadow:0 4px 20px rgba(0,0,0,0.1);
-      border-radius:12px;
+    .calendar {
+      margin: 30px auto;
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 400px;
     }
-    .section h2{
-      font-family:"Playfair Display",serif;
-      font-size:28px;
-      color:var(--red);
-      text-align:center;
-      margin-top:0;
+    .calendar th, .calendar td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
     }
-
-    /* Envelope (open animation) */
-    .invitation-wrapper{
-      position:relative;
-      width:400px;
-      margin:40px auto;
-      text-align:center;
+    .calendar th {
+      background: #f7f7f7;
     }
-    .envelope{
-      position:relative;
-      width:100%;
-      height:300px;
-      perspective:1000px;
+    .highlight {
+      background: #ffdde1;
+      color: red;
+      font-weight: bold;
+      border-radius: 50%;
     }
-    .left-door, .right-door{
-      position:absolute;
-      width:50%;
-      height:100%;
-      top:0;
-      background:#ffb6c1;
-      border:2px solid #fff;
-      transition:transform 1.5s ease-in-out;
-      transform-origin:left;
-      z-index:2;
+    iframe {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 600px;
+      height: 350px;
+      border: 0;
     }
-    .right-door{right:0; transform-origin:right;}
-    .content{
-      position:absolute;
-      top:0;left:0;
-      width:100%;height:100%;
-      background:#fff;
-      border:2px solid #ffb6c1;
-      padding:20px;
-      box-sizing:border-box;
-      opacity:0;
-      transition:opacity 1s ease-in-out;
-      z-index:1;
+    .album {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
     }
-    .envelope.open .left-door{transform:rotateY(-100deg);}
-    .envelope.open .right-door{transform:rotateY(100deg);}
-    .envelope.open .content{opacity:1;}
-
-    /* Gallery */
-    .gallery{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:center;
-    }
-    .gallery img{
-      width:300px;
-      max-width:100%;
-      border-radius:10px;
-      object-fit:cover;
-      box-shadow:0 2px 10px rgba(0,0,0,0.2);
-      transition: transform 0.5s, box-shadow 0.5s;
-    }
-    .gallery img:hover{
-      transform: scale(1.05) rotate(1deg);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    .album img {
+      width: 220px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* Hearts falling */
+    /* Hiệu ứng trái tim rơi */
     .heart {
       position: fixed;
       top: -50px;
@@ -137,171 +88,71 @@
       0% { transform: translateY(0) rotate(0deg); }
       100% { transform: translateY(100vh) rotate(360deg); }
     }
-
-    /* Map */
-    .map-wrap{
-      display:flex;
-      justify-content:center;
-      margin-top:20px;
-    }
-    .map-wrap iframe{
-      width:100%;
-      max-width:700px;
-      height:400px;
-      border:0;
-      border-radius:10px;
-    }
-
-    /* RSVP form */
-    form{
-      display:flex;
-      flex-direction:column;
-      max-width:400px;
-      margin:auto;
-    }
-    form input, form select, form button{
-      margin-bottom:10px;
-      padding:10px;
-      font-size:16px;
-    }
-    form button{
-      background:var(--red);
-      color:#fff;
-      border:none;
-      border-radius:5px;
-      cursor:pointer;
-    }
-    form button:hover{background:var(--accent);}
-
-    /* Music control */
-    .music-control{
-      position:fixed;
-      bottom:20px;
-      right:20px;
-      background:var(--red);
-      color:#fff;
-      border:none;
-      border-radius:50%;
-      width:60px;
-      height:60px;
-      font-size:22px;
-      cursor:pointer;
-      box-shadow:0 4px 12px rgba(0,0,0,0.25);
-    }
-
-    @media(max-width:600px){
-      .section{border-width:6px;padding:14px;}
-      header h1{font-size:32px;}
-      .gallery img{width:100%;}
-    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Nguyễn Tiến Tuấn &amp; Nguyễn Thị Hương</h1>
-  <p>Lễ Thành Hôn — 18 / 10 / 2025</p>
-</header>
-
-<div class="container">
-
-  <!-- Ảnh cô dâu chú rể -->
-  <div class="section">
-    <h2>Ảnh Cô Dâu &amp; Chú Rể</h2>
-    <div class="gallery">
-      <img src="./templates/Hinh-anh-gai-xinh-deo-no-sieu-cute.jpg" alt="Bride">
-      <img src="./templates/anh-chan-dung-trai-dep.jpg" alt="Groom">
-      <img src="./templates/Hinh-anh-gai-xinh-deo-no-sieu-cute.jpg" alt="Couple">
+  <!-- Trang 1 -->
+  <section class="hero">
+    <h1>Save The Date</h1>
+    <h2>Tuấn Anh & Thảo Anh</h2>
+    <img src="anh-cuoi-1.jpg" alt="Ảnh cưới">
+    <div class="date-time">
+      ⏰ 16:30 - Chủ Nhật, 30/03/2025 <br>
+      (Tức ngày 02 tháng 03 năm Ất Tỵ)
     </div>
-  </div>
+    <p><i>Một hành trình mới bắt đầu từ hôm nay</i></p>
+  </section>
 
-  <!-- Thiệp mời -->
-  <div class="invitation-wrapper">
-    <div class="envelope" id="envelope">
-      <div class="left-door"></div>
-      <div class="right-door"></div>
-      <div class="content">
-        <h2>Thiệp Mời</h2>
-        <p>Trân trọng kính mời Quý khách tới dự bữa cơm thân mật chung vui cùng gia đình chúng tôi.</p>
-        <p>Địa điểm: <strong>Tư Gia Nhà Trai – Tiên Kiên, Trường Sơn, Bắc Ninh</strong></p>
-        <p>Thời gian: <strong>10 giờ 00 — Thứ Ba, ngày 18/02/2025</strong><br>(Tức ngày 21 tháng 01 năm Ất Tỵ)</p>
-        <p>Sự hiện diện của Quý vị là niềm vinh hạnh cho gia đình chúng tôi!</p>
-      </div>
+  <!-- Trang 2 -->
+  <section>
+    <h1>Save The Date</h1>
+    <h2>Tháng 03 - 2025</h2>
+    <table class="calendar">
+      <tr>
+        <th>CN</th><th>T2</th><th>T3</th><th>T4</th><th>T5</th><th>T6</th><th>T7</th>
+      </tr>
+      <tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+      <tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+      <tr><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>
+      <tr><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr>
+      <tr><td class="highlight">30 ❤️</td><td>31</td><td colspan="5"></td></tr>
+    </table>
+  </section>
+
+  <!-- Trang 3 -->
+  <section>
+    <h1>Địa điểm tổ chức</h1>
+    <h2>Khách sạn White Palace</h2>
+    <p>📍 245B Trần Thái Tông, Trần Hưng, Thái Bình</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.90173974234!2d106.14385961452076!3d21.195477822402264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135acd74c1bafcd%3A0x4e8ef5d7bbf9999!2sWhite%20Palace!5e0!3m2!1svi!2s!4v1759284920258!5m2!1svi!2s"></iframe>
+
+    <h2>Album Ảnh Cưới</h2>
+    <div class="album">
+      <img src="anh-cuoi-2.jpg" alt="Ảnh cưới 2">
+      <img src="anh-cuoi-3.jpg" alt="Ảnh cưới 3">
+      <img src="anh-cuoi-4.jpg" alt="Ảnh cưới 4">
     </div>
-    <button onclick="openCard()">Mở thiệp</button>
-  </div>
+  </section>
 
-  <!-- Bản đồ -->
-  <div class="section">
-    <h2>Bản Đồ</h2>
-    <p style="text-align:center">Nhấn vào bản đồ để xem đường đi:</p>
-    <div class="map-wrap">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6349.897242662004!2d106.14385961452076!3d21.195477822402264!3m2!1i1024!2i768!4f13.1!5e1!3m2!1svi!2s!4v1759284920258!5m2!1svi!2s"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-  </div>
+  <!-- Nhạc nền -->
+  <audio autoplay loop>
+    <source src="wedding-song.mp3" type="audio/mpeg">
+  </audio>
 
-  <!-- RSVP -->
-  <div class="section">
-    <h2>Xác Nhận Tham Dự</h2>
-    <form>
-      <input type="text" placeholder="Họ và tên" required>
-      <select required>
-        <option value="">-- Bạn có tham dự không? --</option>
-        <option value="yes">Sẽ tham dự</option>
-        <option value="no">Không tham dự</option>
-      </select>
-      <input type="number" placeholder="Số người đi cùng" min="0">
-      <button type="submit">Gửi</button>
-    </form>
-  </div>
-
-</div>
-
-<!-- Nhạc nền -->
-<audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2022/08/04/audio_53e029c99c.mp3?filename=wedding-background-118901.mp3" loop></audio>
-<button class="music-control" id="musicBtn">▶️</button>
-
-<script>
-  // Nhạc nền
-  const music = document.getElementById('bgMusic');
-  const btn   = document.getElementById('musicBtn');
-  let playing = false;
-  btn.addEventListener('click',()=>{
-    if(!playing){
-      music.play();
-      btn.textContent='⏸️';
-      playing = true;
-    }else{
-      music.pause();
-      btn.textContent='▶️';
-      playing = false;
+  <script>
+    // Trái tim rơi
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      const icons = ["❤️","💖","💕","💗","💓"];
+      heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 8000);
     }
-  });
-
-  // Mở thiệp
-  function openCard(){
-    document.getElementById('envelope').classList.add('open');
-  }
-
-  // Tim rơi
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    const icons = ["❤️","💖","💕","💗","💓"];
-    heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.animationDuration = (3 + Math.random() * 5) + 's';
-    document.body.appendChild(heart);
-    setTimeout(() => { heart.remove(); }, 8000);
-  }
-  setInterval(createHeart, 400);
-
-  // Auto mở sau 1s
-  document.addEventListener('DOMContentLoaded', ()=>{
-    setTimeout(()=>document.getElementById('envelope').classList.add('open'), 1000);
-  });
-</script>
-
+    setInterval(createHeart, 400);
+  </script>
 </body>
 </html>
