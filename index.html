@@ -1,141 +1,200 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Thiệp cưới Online</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Thiệp Cưới Online</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --red:#c71c2b;
-  --accent:#e94b56;
-  --bg:#fff;
-}
-*{box-sizing:border-box;}
-body{
-  margin:0;
-  font-family:"Roboto",sans-serif;
-  background: linear-gradient(120deg, #fceabb, #f8b500);
-  background-size:400% 400%;
-  animation: gradientBG 15s ease infinite;
-  color:#333;
-}
-@keyframes gradientBG{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
+  <style>
+    :root{
+      --red:#c71c2b;
+      --accent:#e94b56;
+      --bg:#fff;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:"Roboto",sans-serif;
+      background: linear-gradient(120deg, #fceabb, #f8b500);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color:#333;
+    }
+    @keyframes gradientBG{
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
 
-header{
-  background:var(--red);
-  color:#fff;
-  padding:20px;
-  text-align:center;
-}
-header h1{
-  font-family:"Great Vibes",cursive;
-  font-size:40px;
-  margin:0;
-}
-header p{margin:4px 0 0;font-size:16px;}
+    header{
+      background:var(--red);
+      color:#fff;
+      padding:20px;
+      text-align:center;
+    }
+    header h1{
+      font-family:"Great Vibes",cursive;
+      font-size:48px;
+      margin:0;
+    }
+    header p{margin:4px 0 0;font-size:18px;}
 
-.container{max-width:1000px;margin:auto;padding:20px;}
-.section{
-  background:#fff;
-  border:10px solid var(--red);
-  padding:20px;
-  margin-bottom:30px;
-  box-shadow:0 4px 20px rgba(0,0,0,0.1);
-}
-.section h2{
-  font-family:"Playfair Display",serif;
-  font-size:28px;
-  color:var(--red);
-  text-align:center;
-  margin-top:0;
-}
+    .container{
+      max-width:1000px;
+      margin:auto;
+      padding:20px;
+    }
+    .section{
+      background:#fff;
+      border:10px solid var(--red);
+      padding:20px;
+      margin-bottom:30px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.1);
+      border-radius:12px;
+    }
+    .section h2{
+      font-family:"Playfair Display",serif;
+      font-size:28px;
+      color:var(--red);
+      text-align:center;
+      margin-top:0;
+    }
 
-/* Gallery */
-.gallery{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
-}
-.gallery img{
-  width:300px;
-  max-width:100%;
-  border-radius:10px;
-  object-fit:cover;
-  transition:transform 0.5s, box-shadow 0.5s;
-  box-shadow:0 2px 10px rgba(0,0,0,0.2);
-}
-.gallery img:hover{
-  transform:scale(1.05) rotate(1deg);
-  box-shadow:0 6px 20px rgba(0,0,0,0.3);
-}
+    /* Envelope (open animation) */
+    .invitation-wrapper{
+      position:relative;
+      width:400px;
+      margin:40px auto;
+      text-align:center;
+    }
+    .envelope{
+      position:relative;
+      width:100%;
+      height:300px;
+      perspective:1000px;
+    }
+    .left-door, .right-door{
+      position:absolute;
+      width:50%;
+      height:100%;
+      top:0;
+      background:#ffb6c1;
+      border:2px solid #fff;
+      transition:transform 1.5s ease-in-out;
+      transform-origin:left;
+      z-index:2;
+    }
+    .right-door{right:0; transform-origin:right;}
+    .content{
+      position:absolute;
+      top:0;left:0;
+      width:100%;height:100%;
+      background:#fff;
+      border:2px solid #ffb6c1;
+      padding:20px;
+      box-sizing:border-box;
+      opacity:0;
+      transition:opacity 1s ease-in-out;
+      z-index:1;
+    }
+    .envelope.open .left-door{transform:rotateY(-100deg);}
+    .envelope.open .right-door{transform:rotateY(100deg);}
+    .envelope.open .content{opacity:1;}
 
-/* Invitation animation */
-.invitation-wrapper{position:relative;width:400px;margin:50px auto;text-align:center;}
-.envelope{position:relative;width:100%;height:300px;perspective:1000px;}
-.left-door,.right-door{
-  position:absolute;width:50%;height:100%;top:0;
-  background:#ffb6c1;border:2px solid #fff;
-  transition:transform 1.5s ease-in-out;
-  z-index:2;
-}
-.left-door{left:0;transform-origin:left;}
-.right-door{right:0;transform-origin:right;}
-.content{
-  position:absolute;top:0;left:0;width:100%;height:100%;
-  background:#fff;border:2px solid #ffb6c1;
-  padding:20px;box-sizing:border-box;
-  opacity:0;transition:opacity 1s ease-in-out;z-index:1;
-}
-.envelope.open .left-door{transform:rotateY(-100deg);}
-.envelope.open .right-door{transform:rotateY(100deg);}
-.envelope.open .content{opacity:1;}
+    /* Gallery */
+    .gallery{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+    }
+    .gallery img{
+      width:300px;
+      max-width:100%;
+      border-radius:10px;
+      object-fit:cover;
+      box-shadow:0 2px 10px rgba(0,0,0,0.2);
+      transition: transform 0.5s, box-shadow 0.5s;
+    }
+    .gallery img:hover{
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
 
-/* Map */
-.map-wrap{display:flex;justify-content:center;margin-top:20px;}
-.map-wrap iframe{width:100%;max-width:700px;height:400px;border:0;border-radius:10px;}
+    /* Hearts falling */
+    .heart {
+      position: fixed;
+      top: -50px;
+      font-size: 20px;
+      animation: fall linear forwards;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
 
-/* RSVP form */
-form{display:flex;flex-direction:column;}
-form input,form select,form button{
-  margin-bottom:10px;padding:10px;font-size:16px;
-}
-form button{
-  background:var(--red);color:#fff;border:none;border-radius:5px;cursor:pointer;
-}
-form button:hover{background:var(--accent);}
+    /* Map */
+    .map-wrap{
+      display:flex;
+      justify-content:center;
+      margin-top:20px;
+    }
+    .map-wrap iframe{
+      width:100%;
+      max-width:700px;
+      height:400px;
+      border:0;
+      border-radius:10px;
+    }
 
-/* Music control */
-.music-control{
-  position:fixed;bottom:20px;right:20px;
-  background:var(--red);color:#fff;border:none;
-  border-radius:50%;width:60px;height:60px;font-size:22px;
-  cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.25);z-index:999;
-}
+    /* RSVP form */
+    form{
+      display:flex;
+      flex-direction:column;
+      max-width:400px;
+      margin:auto;
+    }
+    form input, form select, form button{
+      margin-bottom:10px;
+      padding:10px;
+      font-size:16px;
+    }
+    form button{
+      background:var(--red);
+      color:#fff;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+    }
+    form button:hover{background:var(--accent);}
 
-/* Heart animation */
-.heart{
-  position:fixed;top:-50px;font-size:20px;
-  animation:fall linear forwards;pointer-events:none;z-index:9999;
-}
-@keyframes fall{
-  0%{transform:translateY(0) rotate(0deg);}
-  100%{transform:translateY(100vh) rotate(360deg);}
-}
+    /* Music control */
+    .music-control{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:var(--red);
+      color:#fff;
+      border:none;
+      border-radius:50%;
+      width:60px;
+      height:60px;
+      font-size:22px;
+      cursor:pointer;
+      box-shadow:0 4px 12px rgba(0,0,0,0.25);
+    }
 
-@media(max-width:600px){
-  .section{border-width:6px;padding:14px;}
-  header h1{font-size:32px;}
-  .gallery img{width:100%;}
-}
-</style>
+    @media(max-width:600px){
+      .section{border-width:6px;padding:14px;}
+      header h1{font-size:32px;}
+      .gallery img{width:100%;}
+    }
+  </style>
 </head>
 <body>
 
@@ -146,7 +205,7 @@ form button:hover{background:var(--accent);}
 
 <div class="container">
 
-  <!-- Ảnh -->
+  <!-- Ảnh cô dâu chú rể -->
   <div class="section">
     <h2>Ảnh Cô Dâu &amp; Chú Rể</h2>
     <div class="gallery">
@@ -156,16 +215,16 @@ form button:hover{background:var(--accent);}
     </div>
   </div>
 
-  <!-- Thiệp mở -->
+  <!-- Thiệp mời -->
   <div class="invitation-wrapper">
-    <div class="envelope">
+    <div class="envelope" id="envelope">
       <div class="left-door"></div>
       <div class="right-door"></div>
       <div class="content">
-        <h1>Thiệp Mời</h1>
+        <h2>Thiệp Mời</h2>
         <p>Trân trọng kính mời Quý khách tới dự bữa cơm thân mật chung vui cùng gia đình chúng tôi.</p>
         <p>Địa điểm: <strong>Tư Gia Nhà Trai – Tiên Kiên, Trường Sơn, Bắc Ninh</strong></p>
-        <p>Thời gian: <strong>10 giờ 00 — Thứ Ba, ngày 18/10/2025</strong><br>(Tức ngày 21 tháng 09 năm Ất Tỵ)</p>
+        <p>Thời gian: <strong>10 giờ 00 — Thứ Ba, ngày 18/02/2025</strong><br>(Tức ngày 21 tháng 01 năm Ất Tỵ)</p>
         <p>Sự hiện diện của Quý vị là niềm vinh hạnh cho gia đình chúng tôi!</p>
       </div>
     </div>
@@ -173,11 +232,29 @@ form button:hover{background:var(--accent);}
   </div>
 
   <!-- Bản đồ -->
-  <div class="map-wrap">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6349.897242662004!2d106.14385961452076!3d21.195477822402264!3m2!1i1024!2i768!4f13.1!5e1!3m2!1svi!2s!4v1759284920258!5m2!1svi!2s"
-    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
+  <div class="section">
+    <h2>Bản Đồ</h2>
+    <p style="text-align:center">Nhấn vào bản đồ để xem đường đi:</p>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6349.897242662004!2d106.14385961452076!3d21.195477822402264!3m2!1i1024!2i768!4f13.1!5e1!3m2!1svi!2s!4v1759284920258!5m2!1svi!2s"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+  <!-- RSVP -->
+  <div class="section">
+    <h2>Xác Nhận Tham Dự</h2>
+    <form>
+      <input type="text" placeholder="Họ và tên" required>
+      <select required>
+        <option value="">-- Bạn có tham dự không? --</option>
+        <option value="yes">Sẽ tham dự</option>
+        <option value="no">Không tham dự</option>
+      </select>
+      <input type="number" placeholder="Số người đi cùng" min="0">
+      <button type="submit">Gửi</button>
+    </form>
+  </div>
 
 </div>
 
@@ -186,32 +263,44 @@ form button:hover{background:var(--accent);}
 <button class="music-control" id="musicBtn">▶️</button>
 
 <script>
-const music=document.getElementById('bgMusic');
-const btn=document.getElementById('musicBtn');
-let playing=false;
-btn.addEventListener('click',()=>{
-  if(!playing){music.play();btn.textContent='⏸️';playing=true;}
-  else{music.pause();btn.textContent='▶️';playing=false;}
-});
+  // Nhạc nền
+  const music = document.getElementById('bgMusic');
+  const btn   = document.getElementById('musicBtn');
+  let playing = false;
+  btn.addEventListener('click',()=>{
+    if(!playing){
+      music.play();
+      btn.textContent='⏸️';
+      playing = true;
+    }else{
+      music.pause();
+      btn.textContent='▶️';
+      playing = false;
+    }
+  });
 
-// Mở thiệp
-function openCard(){
-  document.querySelector('.envelope').classList.add('open');
-}
+  // Mở thiệp
+  function openCard(){
+    document.getElementById('envelope').classList.add('open');
+  }
 
-// Trái tim rơi
-function createHeart(){
-  const heart=document.createElement('div');
-  heart.classList.add('heart');
-  const icons=["❤️","💖","💕","💗","💓"];
-  heart.innerHTML=icons[Math.floor(Math.random()*icons.length)];
-  heart.style.left=Math.random()*window.innerWidth+'px';
-  heart.style.fontSize=(16+Math.random()*20)+'px';
-  heart.style.animationDuration=(3+Math.random()*5)+'s';
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),8000);
-}
-setInterval(createHeart,400);
+  // Tim rơi
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    const icons = ["❤️","💖","💕","💗","💓"];
+    heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => { heart.remove(); }, 8000);
+  }
+  setInterval(createHeart, 400);
+
+  // Auto mở sau 1s
+  document.addEventListener('DOMContentLoaded', ()=>{
+    setTimeout(()=>document.getElementById('envelope').classList.add('open'), 1000);
+  });
 </script>
 
 </body>
