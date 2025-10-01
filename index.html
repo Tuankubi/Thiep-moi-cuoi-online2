@@ -8,84 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
-  .flower{
-  position:fixed;
-  top:-50px;
-  font-size:20px;
-  animation: fall linear forwards;
-  pointer-events:none;
-  z-index:9999;
-}
-
-@keyframes fall{
-  0%{transform:translateY(0) rotate(0deg);}
-  100%{transform:translateY(100vh) rotate(360deg);}
-}
-
-  .invitation-wrapper{
-  position:relative;
-  width:400px;
-  margin:50px auto;
-  text-align:center;
-}
-.envelope{
-  position:relative;
-  width:100%;
-  height:300px;
-  perspective:1000px;
-}
-.left-door, .right-door{
-  position:absolute;
-  width:50%;
-  height:100%;
-  top:0;
-  background:#ffb6c1;
-  border:2px solid #fff;
-  transition:transform 1.5s ease-in-out;
-  transform-origin:left;
-  z-index:2;
-}
-.right-door{
-  right:0;
-  transform-origin:right;
-}
-.content{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#fff;
-  border:2px solid #ffb6c1;
-  padding:20px;
-  box-sizing:border-box;
-  opacity:0;
-  transition:opacity 1s ease-in-out;
-  z-index:1;
-}
-.envelope.open .left-door{
-  transform:rotateY(-100deg);
-}
-.envelope.open .right-door{
-  transform:rotateY(100deg);
-}
-.envelope.open .content{
-  opacity:1;
-}
-
-  .envelope{position:relative;width:600px;margin:auto;}
-.left-flap, .right-flap{
-  position:absolute;
-  top:0; width:50%; height:200px;
-  background:var(--red);
-  transition: transform 1s;
-  transform-origin: left;
-}
-.right-flap{left:50%; transform-origin:right;}
-.envelope.open .left-flap{transform: rotateY(-120deg);}
-.envelope.open .right-flap{transform: rotateY(120deg);}
-.invite-content{opacity:0; transition: opacity 1s; text-align:center;}
-.envelope.open .invite-content{opacity:1;}
 :root{
   --red:#c71c2b;
   --accent:#e94b56;
@@ -95,9 +17,17 @@
 body{
   margin:0;
   font-family:"Roboto",sans-serif;
-  background:#fafafa;
+  background: linear-gradient(120deg, #fceabb, #f8b500);
+  background-size:400% 400%;
+  animation: gradientBG 15s ease infinite;
   color:#333;
 }
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
 header{
   background:var(--red);
   color:#fff;
@@ -111,11 +41,7 @@ header h1{
 }
 header p{margin:4px 0 0;font-size:16px;}
 
-.container{
-  max-width:1000px;
-  margin:auto;
-  padding:20px;
-}
+.container{max-width:1000px;margin:auto;padding:20px;}
 .section{
   background:#fff;
   border:10px solid var(--red);
@@ -143,85 +69,65 @@ header p{margin:4px 0 0;font-size:16px;}
   max-width:100%;
   border-radius:10px;
   object-fit:cover;
+  transition:transform 0.5s, box-shadow 0.5s;
   box-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
-
-/* Invitation text */
-.invite-text{
-  text-align:center;
-  line-height:1.6;
-  font-size:16px;
-  max-width:700px;
-  margin:auto;
+.gallery img:hover{
+  transform:scale(1.05) rotate(1deg);
+  box-shadow:0 6px 20px rgba(0,0,0,0.3);
 }
 
-/* Map iframe */
-.map-wrap{
-  display:flex;
-  justify-content:center;
-  margin-top:20px;
+/* Invitation animation */
+.invitation-wrapper{position:relative;width:400px;margin:50px auto;text-align:center;}
+.envelope{position:relative;width:100%;height:300px;perspective:1000px;}
+.left-door,.right-door{
+  position:absolute;width:50%;height:100%;top:0;
+  background:#ffb6c1;border:2px solid #fff;
+  transition:transform 1.5s ease-in-out;
+  z-index:2;
 }
-.map-wrap iframe{
-  width:100%;
-  max-width:700px;
-  height:400px;
-  border:0;
-  border-radius:10px;
+.left-door{left:0;transform-origin:left;}
+.right-door{right:0;transform-origin:right;}
+.content{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background:#fff;border:2px solid #ffb6c1;
+  padding:20px;box-sizing:border-box;
+  opacity:0;transition:opacity 1s ease-in-out;z-index:1;
 }
+.envelope.open .left-door{transform:rotateY(-100deg);}
+.envelope.open .right-door{transform:rotateY(100deg);}
+.envelope.open .content{opacity:1;}
+
+/* Map */
+.map-wrap{display:flex;justify-content:center;margin-top:20px;}
+.map-wrap iframe{width:100%;max-width:700px;height:400px;border:0;border-radius:10px;}
+
+/* RSVP form */
+form{display:flex;flex-direction:column;}
+form input,form select,form button{
+  margin-bottom:10px;padding:10px;font-size:16px;
+}
+form button{
+  background:var(--red);color:#fff;border:none;border-radius:5px;cursor:pointer;
+}
+form button:hover{background:var(--accent);}
 
 /* Music control */
 .music-control{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:var(--red);
-  color:#fff;
-  border:none;
-  border-radius:50%;
-  width:60px;
-  height:60px;
-  font-size:22px;
-  cursor:pointer;
-  box-shadow:0 4px 12px rgba(0,0,0,0.25);
-}
-.gallery img{
-  transition: transform 0.5s, box-shadow 0.5s;
-}
-.gallery img:hover{
-  transform: scale(1.05) rotate(1deg);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-}
-body{
-  background: linear-gradient(120deg, #fceabb, #f8b500);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-}
-@keyframes gradientBG{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+  position:fixed;bottom:20px;right:20px;
+  background:var(--red);color:#fff;border:none;
+  border-radius:50%;width:60px;height:60px;font-size:22px;
+  cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.25);z-index:999;
 }
 
-
-/* RSVP form */
-form{
-  display:flex;
-  flex-direction:column;
+/* Heart animation */
+.heart{
+  position:fixed;top:-50px;font-size:20px;
+  animation:fall linear forwards;pointer-events:none;z-index:9999;
 }
-form input, form select, form button{
-  margin-bottom:10px;
-  padding:10px;
-  font-size:16px;
-}
-form button{
-  background:var(--red);
-  color:#fff;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-}
-form button:hover{
-  background:var(--accent);
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0deg);}
+  100%{transform:translateY(100vh) rotate(360deg);}
 }
 
 @media(max-width:600px){
@@ -240,7 +146,7 @@ form button:hover{
 
 <div class="container">
 
-  <!-- Ảnh cô dâu chú rể -->
+  <!-- Ảnh -->
   <div class="section">
     <h2>Ảnh Cô Dâu &amp; Chú Rể</h2>
     <div class="gallery">
@@ -250,31 +156,28 @@ form button:hover{
     </div>
   </div>
 
-  <!-- Nội dung thiệp -->
-   <div class="invitation-wrapper">
-  <div class="envelope">
-    <div class="left-door"></div>
-    <div class="right-door"></div>
-    <div class="content">
-      <h1>Thiệp Mời</h1>
-      <p>Trân trọng kính mời Quý khách tới dự bữa cơm thân mật chung vui cùng gia đình chúng tôi.</p>
-      <p>Địa điểm: <strong>Tư Gia Nhà Trai – Tiên Kiên, Trường Sơn, Bắc Ninh</strong></p>
-      <p>Thời gian: <strong>10 giờ 00 — Thứ Ba, ngày 18/02/2025</strong><br>(Tức ngày 21 tháng 01 năm Ất Tỵ)</p>
-      <p>Sự hiện diện của Quý vị là niềm vinh hạnh cho gia đình chúng tôi!</p>
+  <!-- Thiệp mở -->
+  <div class="invitation-wrapper">
+    <div class="envelope">
+      <div class="left-door"></div>
+      <div class="right-door"></div>
+      <div class="content">
+        <h1>Thiệp Mời</h1>
+        <p>Trân trọng kính mời Quý khách tới dự bữa cơm thân mật chung vui cùng gia đình chúng tôi.</p>
+        <p>Địa điểm: <strong>Tư Gia Nhà Trai – Tiên Kiên, Trường Sơn, Bắc Ninh</strong></p>
+        <p>Thời gian: <strong>10 giờ 00 — Thứ Ba, ngày 18/10/2025</strong><br>(Tức ngày 21 tháng 09 năm Ất Tỵ)</p>
+        <p>Sự hiện diện của Quý vị là niềm vinh hạnh cho gia đình chúng tôi!</p>
+      </div>
     </div>
+    <button onclick="openCard()">Mở thiệp</button>
   </div>
-  <button onclick="openCard()">Mở thiệp</button>
-</div>
 
-  
-
-
-  <!-- Bản đồ vị trí -->
+  <!-- Bản đồ -->
   <div class="section">
     <h2>Bản Đồ</h2>
     <p style="text-align:center">Nhấn vào bản đồ để xem đường đi:</p>
     <div class="map-wrap">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1259.54843051489!2d106.11981408771497!3d21.24593332128555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31350d70235a91bb%3A0x9f408aa4f713632c!2zNjRXQys4UU0sIMSQ4buTbmcgVsOgbmcsIEtDTiDEkMOsbmggVHLDoW0sIFZp4buHdCBZw6puLCBC4bqvYyBHaWFuZywgVmnhu4d0IE5hbQ!5e1!3m2!1svi!2s!4v1759178042902!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!... (map của bạn) ..." allowfullscreen="" loading="lazy"></iframe>
     </div>
   </div>
 
@@ -285,40 +188,32 @@ form button:hover{
 <button class="music-control" id="musicBtn">▶️</button>
 
 <script>
-const music = document.getElementById('bgMusic');
-const btn   = document.getElementById('musicBtn');
-let playing = false;
-
+const music=document.getElementById('bgMusic');
+const btn=document.getElementById('musicBtn');
+let playing=false;
 btn.addEventListener('click',()=>{
-  if(!playing){
-    music.play();
-    btn.textContent='⏸️';
-    playing = true;
-  }else{
-    music.pause();
-    btn.textContent='▶️';
-    playing = false;
-  }
+  if(!playing){music.play();btn.textContent='⏸️';playing=true;}
+  else{music.pause();btn.textContent='▶️';playing=false;}
 });
-document.addEventListener('DOMContentLoaded', ()=>{
-  setTimeout(()=>document.querySelector('.envelope').classList.add('open'), 500);
-});
+
+// Mở thiệp
 function openCard(){
   document.querySelector('.envelope').classList.add('open');
 }
-function createFlower(){
-  const flower = document.createElement('div');
-  flower.classList.add('flower');
-  flower.innerHTML = "🌸"; // có thể thay bằng 🌺 🌹
-  flower.style.left = Math.random() * window.innerWidth + 'px';
-  flower.style.animationDuration = (3 + Math.random() * 5) + 's';
-  document.body.appendChild(flower);
 
-  setTimeout(()=>{ flower.remove(); }, 8000);
+// Trái tim rơi
+function createHeart(){
+  const heart=document.createElement('div');
+  heart.classList.add('heart');
+  const icons=["❤️","💖","💕","💗","💓"];
+  heart.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+  heart.style.left=Math.random()*window.innerWidth+'px';
+  heart.style.fontSize=(16+Math.random()*20)+'px';
+  heart.style.animationDuration=(3+Math.random()*5)+'s';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),8000);
 }
-
-setInterval(createFlower, 500);
-
+setInterval(createHeart,400);
 </script>
 
 </body>
